@@ -11,7 +11,7 @@ Run `node client.js` command which will start WS server (by default on 9999 port
 Server accepts the following JSON serialized messages:
 
 To send an offer:
-```json
+```
 {
   type: 'offer',
   offer: <SDP>
@@ -19,14 +19,14 @@ To send an offer:
 ```
 
 To close connection:
-```json
+```
 {
   type: 'disconnect'
 }
 ```
 
 To send ICE candidate:
-```json
+```
 {
   type: 'icecandidate',
   candidate: <CANDIDATE>
@@ -36,7 +36,7 @@ To send ICE candidate:
 ### Outgoing messages
 
 Once offer received answer is sent back:
-```json
+```
 {
   type: 'answer',
   answer: <SDP>
@@ -44,7 +44,7 @@ Once offer received answer is sent back:
 ```
 
 ICE candidate:
-```json
+```
 {
   type: 'icecandidate',
   candidate: <CANDIDATE>
