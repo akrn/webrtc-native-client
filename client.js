@@ -28,6 +28,7 @@ wss.on('connection', (ws) => {
         break;
 
       case 'icecandidate':
+        console.log('Got an icecandidate', msg.candidate);
         if (msg.candidate && msg.candidate.sdpMid && msg.candidate.sdpMLineIndex) {
           peer.addIceCandidate(new WebRTC.RTCIceCandidate(msg.candidate));
         }
@@ -53,6 +54,7 @@ wss.on('connection', (ws) => {
     
   peer.onicecandidate = function(event) {
     var candidate = event.candidate || event;
+    console.log('Sending icecandidate', candidate);
     ws.send(JSON.stringify({ type: 'icecandidate', candidate: candidate }));
   };
   
