@@ -3,7 +3,13 @@ const WebSocketServer = require('ws').Server;
 const WebRTC = require('webrtc-native');
 
 
-const webrtcConfig = {};
+const webrtcConfig = {
+  iceServers: [
+    {
+      url: "stun:stun.l.google.com:19302"
+    }
+  ]
+};
 const webrtcConstraints = {
     audio: true,
     video: true
@@ -29,7 +35,7 @@ wss.on('connection', (ws) => {
 
       case 'icecandidate':
         console.log('Got an icecandidate', msg.candidate);
-        if (msg.candidate && msg.candidate.sdpMid && msg.candidate.sdpMLineIndex) {
+        if (msg.candidate && msg.candidate.sdpMid) {
           peer.addIceCandidate(new WebRTC.RTCIceCandidate(msg.candidate));
         }
         break;
